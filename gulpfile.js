@@ -35,17 +35,23 @@ gulp.task('watch',['retire'], function() {
   gulp.watch('./src/**/*.js', ['reload']);
 });
 gulp.task('retire', function() {
-    // Spawn Retire.js as a child process
-    // You can optionally add option parameters to the second argument (array)
     var child = spawn('retire', [], {cwd: process.cwd()});
-    
+    var child2  = spawn('nodejsscan',['-d /src -o JSON'],{cwd:process.cwd()});
     child.stdout.setEncoding('utf8');
+    child2.stdout.setEncoding('utf8');
+    child2.stdout.on('data', function(data){
+        log("----------------------->nodejsscan<--------------------------")
+        log(data);
+    })
     child.stdout.on('data', function (data) {
+
+        log("----------------------->RetireJS output<--------------------------")
         log(data);
     });
 
     child.stderr.setEncoding('utf8');
     child.stderr.on('data', function (data) {
+        log("----------------------->RetireJS error<--------------------------")
         console.error(c.red(data));
         beeper();
     });
