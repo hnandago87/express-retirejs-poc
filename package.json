@@ -1,0 +1,56 @@
+{
+  "name": "native-server",
+  "version": "1.0.0",
+  "description": "Server to drive mobile based API's",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && npm build",
+    "dev": "nodemon -w src --exec \"babel-cli src --presets latest,stage-0\"",
+    "build": "babel src -s -D -d dist --presets es2015,stage-0",
+    "start": "node dist",
+    "gulp": "gulp",
+    "prestart": "npm run -s build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "test/*",
+      "docs/*"
+    ],
+    "delay": "2500"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 7,
+      "sourceType": "module"
+    },
+    "env": {
+      "node": true
+    },
+    "rules": {
+      "no-console": 0,
+      "no-unused-vars": 1
+    }
+  },
+  "author": "Hari",
+  "license": "ISC",
+  "dependencies": {
+    "ansi-colors": "^3.0.3",
+    "async": "^2.6.1",
+    "beeper": "^1.1.1",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "fancy-log": "^1.3.2",
+    "gulp": "^3.9.1",
+    "gulp-express": "^0.3.5",
+    "gulp-inject": "^4.3.2",
+    "gulp-livereload": "^3.8.1",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-watch": "^5.0.1",
+    "gulp-webserver": "^0.9.1",
+    "nodemon": "^1.18.3",
+    "randomstring": "^1.1.5"
+  }
+}
